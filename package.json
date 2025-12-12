@@ -1,0 +1,86 @@
+{
+    "name": "beekeeping-app",
+    "version": "1.0.0",
+    "description": "تطبيق شامل لإدارة المناحل وتربية النحل - منصة إدارة المناحل الذكية",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@capacitor/android": "^7.4.4",
+        "@capacitor/app": "^7.1.0",
+        "@capacitor/camera": "^7.0.2",
+        "@capacitor/core": "^7.4.4",
+        "@capacitor/geolocation": "^7.1.6",
+        "@capacitor/ios": "^7.4.4",
+        "@capacitor/network": "^7.0.2",
+        "@capacitor/splash-screen": "^7.0.3",
+        "@capacitor/status-bar": "^7.0.3",
+        "@supabase/supabase-js": "^2.57.4",
+        "lucide-react": "^0.344.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "typecheck": "tsc --noEmit -p tsconfig.app.json",
+        "test": "jest",
+        "mobile:sync": "npm run build && npx cap sync",
+        "mobile:android": "npm run build && npx cap sync android && npx cap open android",
+        "mobile:ios": "npm run build && npx cap sync ios && npx cap open ios",
+        "mobile:run:android": "npm run build && npx cap sync android && npx cap run android",
+        "mobile:run:ios": "npm run build && npx cap sync ios && npx cap run ios",
+        "serve": "serve -s dist",
+        "start": "vite"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@capacitor/cli": "^7.4.4",
+        "@eslint/js": "^9.9.1",
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.3.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/react": "^18.3.5",
+        "@types/react-dom": "^18.3.0",
+        "@vitejs/plugin-react": "^4.3.1",
+        "autoprefixer": "^10.4.18",
+        "eslint": "^9.9.1",
+        "eslint-plugin-react": "^7.37.2",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.11",
+        "globals": "^15.9.0",
+        "jest": "^29.7.0",
+        "postcss": "^8.4.35",
+        "serve": "^14.0.1",
+        "tailwindcss": "^3.4.1",
+        "typescript": "^5.5.3",
+        "typescript-eslint": "^8.3.0",
+        "vite": "^6.1.6"
+    },
+    "keywords": [
+        "beekeeping",
+        "honey",
+        "apiary",
+        "hive",
+        "نحل",
+        "عسل",
+        "منحل",
+        "خلية"
+    ],
+    "author": "فريق تطوير تطبيق النحالين",
+    "license": "MIT",
+    "homepage": ".",
+    "proxy": "http://localhost:3001"
+}
