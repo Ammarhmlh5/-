@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: shipping_admin_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-shipping_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-shipping_pass123}
+      POSTGRES_DB: ${POSTGRES_DB:-shipping_admin}
+    ports:
+      - "${POSTGRES_PORT:-5434}:5432"
+    volumes:
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/01_create_tables.sql:ro
+      - shipping_admin_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-shipping_user} -d ${POSTGRES_DB:-shipping_admin}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  shipping_admin_pgdata:

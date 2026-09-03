@@ -1,0 +1,56 @@
+# =====================================================
+# Python Dependencies - نظام الشحن
+# Flask Monolith Stack (v1 — implemented baseline)
+# =====================================================
+
+# Web Framework
+flask>=3.0
+flask-cors
+
+# Database (PostgreSQL) — SQLAlchemy ORM
+flask-sqlalchemy>=3.1
+flask-migrate
+sqlalchemy
+psycopg[binary,pool]
+
+# Configuration
+python-dotenv
+
+# Auth / JWT / Password
+flask-jwt-extended
+bcrypt
+
+# Outbound integrations (ERPNext sync)
+requests
+httpx
+python-dateutil
+
+# Container Tracking & Shipping Line Query
+# Async task queue for scheduled telemetry polling / shipping line queries
+celery>=5.3
+redis>=5.0
+# PostGIS spatial tracking
+GeoAlchemy2>=0.14
+# Web scraping / parsing shipping line tracking HTML (COSCO, Maersk, MSC, etc.)
+beautifulsoup4>=4.12
+lxml>=5.0
+html5lib>=1.1
+# Async HTTP for parallel shipping line API calls
+httpx>=0.26
+
+# Barcode / QR Code Generation
+python-barcode>=0.16
+qrcode[pil]>=8.0
+Pillow>=10.0
+
+# Payment Processing (Stripe - Cards + PayPal)
+stripe>=10.0
+
+# Freight Cost Calculation
+# chargeable/volumetric weight, CBM, UOM conversion, packaging consolidation
+logisticspy>=0.3
+# Multi-carrier shipping rates (DHL, FedEx, UPS, etc. via carrier extensions)
+karrio>=2026.1
+
+# Testing (optional)
+pytest

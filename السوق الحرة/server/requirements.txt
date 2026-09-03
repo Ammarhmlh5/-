@@ -1,0 +1,33 @@
+# =====================================================
+# Python Dependencies - السوق الحرة (Marketplace)
+# FastAPI Stack (v1 — implemented baseline)
+# =====================================================
+
+# Web Framework
+fastapi>=0.140
+uvicorn[standard]>=0.30
+
+# Validation
+pydantic>=2.6
+pydantic-settings
+
+# Database (PostgreSQL) — SQLAlchemy 2.0 ORM
+sqlalchemy>=2.0
+psycopg[binary,pool]
+
+# Configuration
+python-dotenv
+
+# Auth / JWT / Password
+PyJWT>=2.8
+bcrypt
+
+# Outbound integrations (ERPNext / OP-03 gateway)
+httpx>=0.26
+
+# Async task queue for scheduled jobs (FX refresh, provisioning, dispatcher)
+celery>=5.3
+redis>=5.0
+
+# Testing
+pytest

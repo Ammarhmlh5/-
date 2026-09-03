@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+instance/
+
+# Environment / secrets (exclude real env files, keep examples)
+.env
+.env.local
+!*.env.example
+
+# Flutter / Dart
+.dart_tool/
+build/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
