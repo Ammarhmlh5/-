@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: shipping_db
+    environment:
+      POSTGRES_USER: ${DB_USER:-shipping_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-shipping_pass123}
+      POSTGRES_DB: ${DB_NAME:-shipping_system}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./create_tables.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-shipping_user} -d ${DB_NAME:-shipping_system}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  shipping_api:
+    build:
+      context: ../02_api_architecture
+      dockerfile: Dockerfile
+    container_name: shipping_api
+    env_file:
+      - ../02_api_architecture/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://shipping_user:shipping_pass123@postgres:5432/shipping_system
+      ERPNEXT_URL: http://host.docker.internal:8080
+      MARKET_INTEGRATION_KEY: ${MARKET_INTEGRATION_KEY:-}
+      HOST: 0.0.0.0
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/health')\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
